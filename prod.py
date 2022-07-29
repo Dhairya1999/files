@@ -45,7 +45,7 @@ if __name__ == "__main__":
     
 	classifier = pipeline('sentiment-analysis')
 	listener = KafkaPushListener()
-	twitter_stream = tweepy.Stream(auth, listener)
+	twitter_stream = tweepy.Stream(consumer_key , access_token)
 
     
 	twitter_stream.filter(track=['covid19'])
