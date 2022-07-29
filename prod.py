@@ -21,7 +21,7 @@ def perform_analysis(tweet):
 	return transformer_sentiment
 
 
-class KafkaPushListener(StreamListener):
+class KafkaPushListener(tweepy.stream):
     def __init__(self):
         self.producer = KafkaProducer(bootstrap_servers=['localhost:9092'])
 
