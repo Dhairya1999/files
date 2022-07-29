@@ -13,6 +13,7 @@ consumer_key = "GEBs5VLKwDan4oME4laUdMjGv"
 consumer_secret = "OzIGA5lddzjdubebNGnHypn3KkNT2A6k2DXwCvKyHxb1lScpTP"
 access_token = "855387525082427394-UeZaS4wsJ0Do4jhe7hTPzdwMhQI0NbX"
 access_secret = "5laJDyt3lltmiTxL3MoNimWrdQivKrUQNzKo7MU5OxySc"
+bearer_token = 'AAAAAAAAAAAAAAAAAAAAAC07fQEAAAAAB7CyzHT8s1HfYB3lrrKa4rPx5P8%3DNnYqfBabqoI4nkGXAvIIgnsRa6JTtN89mnkdsaePieVAc9T5qy'
 
 
 def perform_analysis(tweet):
@@ -21,7 +22,7 @@ def perform_analysis(tweet):
 	return transformer_sentiment
 
 
-class KafkaPushListener(tweepy.Stream):
+class KafkaPushListener(tweepy.StreamingClient):
     def __init__(self):
         self.producer = KafkaProducer(bootstrap_servers=['localhost:9092'])
 
@@ -35,6 +36,10 @@ class KafkaPushListener(tweepy.Stream):
         print("status error - ",status)
         return True
 
+class IDPrinter(tweepy.StreamingClient):
+
+    def on_tweet(self, tweet):
+        print(tweet.id)
 
 
 if __name__ == "__main__":
@@ -45,7 +50,6 @@ if __name__ == "__main__":
     
 	classifier = pipeline('sentiment-analysis')
 	listener = KafkaPushListener()
-	twitter_stream = tweepy.Stream(consumer_key , access_token)
-
-    
-	twitter_stream.filter(track=['covid19'])
+	streaming_client = tweepy.StreamingClient("AAAAAAAAAAAAAAAAAAAAAC07fQEAAAAAB7CyzHT8s1HfYB3lrrKa4rPx5P8%3DNnYqfBabqoI4nkGXAvIIgnsRa6JTtN89mnkdsaePieVAc9T5qy")
+	streaming_client.add_rules(tweepy.StreamRule("Covid-19"))
+	streaming_client.filter()
