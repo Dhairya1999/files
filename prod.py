@@ -9,10 +9,10 @@ import configparser
 
 
 #Twitter API Authentication credentials
-consumer_key = "QF5IPKz63N7jfUuuO8XxjlREP"
-consumer_secret = "ObU6n4HQIAemLkRxrnXplXORHiQ75sdl4GDPsPPg3TggurEg13"
-access_token = "1515508164896120835-juRiwVSPFaPHu7yfNQqeVkUNH0zTwJ"
-access_secret = "53ldAbsxt2ToheGOndQ5kH1dK4SlIjVoxGJCnQKJe7tPr"
+consumer_key = "GEBs5VLKwDan4oME4laUdMjGv"
+consumer_secret = "OzIGA5lddzjdubebNGnHypn3KkNT2A6k2DXwCvKyHxb1lScpTP"
+access_token = "855387525082427394-UeZaS4wsJ0Do4jhe7hTPzdwMhQI0NbX"
+access_secret = "5laJDyt3lltmiTxL3MoNimWrdQivKrUQNzKo7MU5OxySc"
 
 
 def perform_analysis(tweet):
