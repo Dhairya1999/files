@@ -21,7 +21,7 @@ def perform_analysis(tweet):
 	return transformer_sentiment
 
 
-class KafkaPushListener(tweepy.stream):
+class KafkaPushListener(tweepy.StreamingClient):
     def __init__(self):
         self.producer = KafkaProducer(bootstrap_servers=['localhost:9092'])
 
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     
 	classifier = pipeline('sentiment-analysis')
 	listener = KafkaPushListener()
-	twitter_stream = Stream(auth, listener)
+	twitter_stream = tweepy.StreamingClient(auth, listener)
 
     
-	twitter_stream.filter(track=['movie','mreviews'])
+	twitter_stream.filter(track=['covid19'])
